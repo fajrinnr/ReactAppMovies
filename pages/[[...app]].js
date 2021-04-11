@@ -4,55 +4,64 @@ import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addMovies, ADD_MOVIES, getRecommendation } from "../redux/actions/recommendationAction";
+import { route } from "../src/helpers/route";
+import { countTotalPage } from "../src/helpers/pagination";
 
-export default function Home({ listMovie, listSeries, listEpisodes }) {
-  const [recommendation, setRecommendation] = useState([]);
+export default function Home({ listMovie, listSeries, listEpisodes, query }) {
+  const recommendation = useSelector(state => state.recommendations)
+  const listMovies = useSelector(state => state.movies)
   const [keyword, setKeyword] = useState("");
   const [onFocus, setOnFocus] = useState(false);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(addMovies(query, listMovies.page))
+  }, [])
   useEffect(async () => {
-    const res = await axios
-      .get(`http://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}`)
-      .then(({ data }) => {
-        return data;
-      });
-    if (res.Search) {
-      return setRecommendation(res.Search);
-    }
-    setRecommendation([]);
+    dispatch(getRecommendation(keyword))
   }, [keyword]);
+  console.log(listMovies, "<<<<<<");
   const handleScroll = (e) => {
     const target = e.target;
 
     if (target.scrollHeight - target.scrollTop === target.clientHeight) {
-      alert("Bottom");
+      if (listMovies.page <= countTotalPage(listMovie.totalResults)) {
+        console.log(listMovies.page, "MASUKK");
+        dispatch(addMovies(query, listMovies.page+=1))
+      }
     }
   };
   return (
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.searchBox}>
-            <img
-              src="/magnifying-glass.svg"
-              width={20}
-              style={{
-                margin: "3px",
-                filter: "opacity(0.3)",
-              }}
-            />
-            <input
-              type="text"
-              onChange={(e) => setKeyword(e.target.value)}
-              onFocus={() => setOnFocus(true)}
-              onBlur={() => setOnFocus(false)}
-            />
-          </div>
-          <div>
-            <p style={{ margin: "0 0 0 15px" }}>Submit</p>
-          </div>
+          <form method="POST" action={`/?s=${keyword}`}>
+            <div className={styles.searchBox}>
+              <img
+                src="/magnifying-glass.svg"
+                width={20}
+                style={{
+                  margin: "3px",
+                  filter: "opacity(0.3)",
+                }}
+              />
+              <label htmlFor="search"/>
+              <input
+                id="search"
+                type="text"
+                onChange={(e) => setKeyword(e.target.value)}
+                onFocus={() => setOnFocus(true)}
+                onBlur={() => setOnFocus(false)}
+              />
+            </div>
+            <div>
+              <p style={{ margin: "0 0 0 15px" }}>Submit</p>
+            </div>
+          </form>
         </div>
       </div>
-      {recommendation.length >= 0 && (
+      {recommendation.length > 0 && onFocus && (
         <div className={styles.container} style={{ padding: "0" }}>
           <div
             style={{
@@ -106,7 +115,7 @@ export default function Home({ listMovie, listSeries, listEpisodes }) {
         </div>
       )}
 
-      <Carousel showThumbs={false}>
+      <Carousel showThumbs={false} infiniteLoop={true} showStatus={false} showArrows={false} swipeable={true}>
         <div
           style={{
             height: "45vh",
@@ -134,16 +143,17 @@ export default function Home({ listMovie, listSeries, listEpisodes }) {
       </Carousel>
       <div style={{ marginBottom: "20px" }}>
         <div
-          style={{ height: "50px", overflow: "auto", border: "1px solid" }}
+          className={styles.resultMovie}
           onScroll={handleScroll}
         >
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
+          {listMovies.data?.map((movie, i) => {
+            return <div key={i}>
+              <img src={movie.Poster}/>
+              <p>{movie.Title}</p>
+              <p>{movie.Year}</p>
+              <p>{movie.Type}</p>
+            </div>
+          })}
         </div>
       </div>
     </>
@@ -199,6 +209,7 @@ export async function getServerSideProps(ctx) {
       listMovie: res.movies,
       listSeries: res.series,
       listEpisodes: res.episode,
+      query: ctx.query.s ? ctx.query.s : "marvel"
     },
   };
 }
