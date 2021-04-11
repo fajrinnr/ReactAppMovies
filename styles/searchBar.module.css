@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 50px;
+  padding: 50px 50px 10px 50px;
 }
 
 .content {
@@ -11,8 +11,9 @@
   padding: 20px;
   border-radius: 20px;
   align-items: center;
-  background: #ffffff;
+  background: #2a2e43;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  width: 50vh;
 }
 
 .searchBox {
@@ -20,7 +21,8 @@
   border-radius: 10px;
   padding: 10px;
   margin-right: 15px;
-  background: #eff0f5;
+  background: #454f63;
+  width: 100%;
 }
 
 .searchBox input {
@@ -28,7 +30,10 @@
   margin: 0;
   border-radius: 10px;
   font-size: 20px;
-  background: #eff0f5;
+  background: #454f63;
+  width: 100%;
+  color: white;
+  margin-left: 5px;
 }
 
 .searchBox input:focus {
@@ -37,4 +42,15 @@
 
 .searchBox:focus {
   outline: 1px solid red;
+}
+
+.searchResult {
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  width: 50vh;
+  position: absolute;
+  z-index: 10;
+  background: #2a2e43;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 }
