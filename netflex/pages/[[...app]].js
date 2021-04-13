@@ -22,6 +22,7 @@ export default function Home({ listMovie, listSeries, listEpisodes, query }) {
   const episodeList = useSelector((state) => state.episodes);
   const [keyword, setKeyword] = useState("");
   const [onFocus, setOnFocus] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
   const [stateButton, setStateButton] = useState({
     movie: true,
     series: false,
@@ -33,6 +34,7 @@ export default function Home({ listMovie, listSeries, listEpisodes, query }) {
     dispatch(addMovies(query, listMovies.page));
     dispatch(addSeries(query, seriesList.page));
     dispatch(addEpisodes(query, episodeList.page));
+    setCurrentUrl(window.location.href);
   }, []);
   useEffect(async () => {
     dispatch(getRecommendation(keyword));
@@ -76,7 +78,11 @@ export default function Home({ listMovie, listSeries, listEpisodes, query }) {
         recommendation: recommendation,
         onFocusState: onFocus,
       }}
+      currentUrl={currentUrl}
     >
+      <h1 style={{ fontSize: 0 }}>
+        Netflex By Fajrin, find your favorite movie
+      </h1>
       <div
         style={{ display: "flex", justifyContent: "center" }}
         data-testid="container-pill-type"
