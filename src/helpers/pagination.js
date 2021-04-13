@@ -1,6 +1,3 @@
-export const countTotalPage = () => {
-    let number = 123
-    return Math.ceil(number/10)
-}
-
-
+export const countTotalPage = (totalPage) => {
+  return Math.ceil(totalPage / 10);
+};
