@@ -1,31 +1,49 @@
 .container {
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px;
+  background: #454f63;
+}
+
+.containerSearchResult {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 50px 50px 10px 50px;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
+.searchResult {
   padding: 20px;
-  border-radius: 20px;
-  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  position: absolute;
+  z-index: 10;
   background: #2a2e43;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
-  width: 50vh;
+  width: 369px;
 }
 
-.searchBox {
+.contentSearchResult {
   display: flex;
-  border-radius: 10px;
-  padding: 10px;
-  margin-right: 15px;
-  background: #454f63;
-  width: 100%;
+  flex-direction: column;
+  max-height: 30vh;
+  overflow: auto;
+  width: 100;
 }
 
-.searchBox input {
+.imageMagnify {
+  margin: 3px;
+  filter: invert(1);
+}
+
+.submitText {
+  margin: 0 5px 0 15px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+.container input {
   border: 0;
   margin: 0;
   border-radius: 10px;
@@ -36,30 +54,10 @@
   margin-left: 5px;
 }
 
-.searchBox input:focus {
+.container input:focus {
   outline: none;
 }
 
-.searchBox:focus {
+.container:focus {
   outline: 1px solid red;
-}
-
-.searchResult {
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  width: 50vh;
-  position: absolute;
-  z-index: 10;
-  background: #2a2e43;
-  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
-}
-
-.resultMovie {
-  display: flex;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-height: 100vh;
-    overflow: auto;
 }

@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  align-items: center;
+  background-color: #2a2e43;
+  padding: 0 5vw;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
+    rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
+    rgb(0 0 0 / 9%) 0px -3px 5px;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+}
+
+.netflexText {
+  margin: 0;
+  font-size: 50px;
+  color: white;
+  font-weight: 700;
+}
+
+.movieListText {
+  color: white;
+  font-weight: 900;
+  font-size: 25px;
+  margin-left: 50px;
+}
+
+.movieListText:hover {
+  filter: opacity(0.5);
+}
