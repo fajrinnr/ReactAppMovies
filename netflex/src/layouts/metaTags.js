@@ -14,10 +14,7 @@ export default function MetaTags({ currentURL }) {
         property="og:description"
         content="Netflex is a movies web for you, you can search any movie here and see details about the movie that you looking for"
       />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-      ></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="/netflix.svg" />
       <meta
         name="description"
