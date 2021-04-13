@@ -227,37 +227,39 @@ export async function getServerSideProps(ctx) {
   };
   if (ctx.query.s) {
     res.movies = await axios
-      .get(`http://www.omdbapi.com?apikey=faf7e5bb&s=${ctx.query.s}&type=movie`)
+      .get(
+        `https://www.omdbapi.com?apikey=faf7e5bb&s=${ctx.query.s}&type=movie`
+      )
       .then(({ data }) => {
         return data;
       });
     res.series = await axios
       .get(
-        `http://www.omdbapi.com?apikey=faf7e5bb&s=${ctx.query.s}&type=series`
+        `https://www.omdbapi.com?apikey=faf7e5bb&s=${ctx.query.s}&type=series`
       )
       .then(({ data }) => {
         return data;
       });
     res.episode = await axios
       .get(
-        `http://www.omdbapi.com?apikey=faf7e5bb&s=${ctx.query.s}&type=episode`
+        `https://www.omdbapi.com?apikey=faf7e5bb&s=${ctx.query.s}&type=episode`
       )
       .then(({ data }) => {
         return data;
       });
   } else {
     res.movies = await axios
-      .get(`http://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=movie`)
+      .get(`https://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=movie`)
       .then(({ data }) => {
         return data;
       });
     res.series = await axios
-      .get(`http://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=series`)
+      .get(`https://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=series`)
       .then(({ data }) => {
         return data;
       });
     res.episode = await axios
-      .get(`http://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=episode`)
+      .get(`https://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=episode`)
       .then(({ data }) => {
         return data;
       });

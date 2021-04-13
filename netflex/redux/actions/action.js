@@ -34,7 +34,7 @@ export const ADD_EPISODES = (episodes, page) => ({
 export const getRecommendation = (keyword) => {
   return (dispatch) => {
     axios
-      .get(`http://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}`)
+      .get(`https://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}`)
       .then(({ data }) => {
         if (data.Search) {
           dispatch(GET_RECOMMENDATION(data.Search));
@@ -52,7 +52,7 @@ export const addMovies = (keyword, page) => {
   return (dispatch) => {
     axios
       .get(
-        `http://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}&type=movie&page=${page}`
+        `https://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}&type=movie&page=${page}`
       )
       .then(({ data }) => {
         if (data.Search) {
@@ -71,7 +71,7 @@ export const addSeries = (keyword, page) => {
   return (dispatch) => {
     axios
       .get(
-        `http://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}&type=series&page=${page}`
+        `https://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}&type=series&page=${page}`
       )
       .then(({ data }) => {
         if (data.Search) {
@@ -90,7 +90,7 @@ export const addEpisodes = (keyword, page) => {
   return (dispatch) => {
     axios
       .get(
-        `http://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}&type=episode&page=${page}`
+        `https://www.omdbapi.com?apikey=faf7e5bb&s=${keyword}&type=episode&page=${page}`
       )
       .then(({ data }) => {
         if (data.Search) {

@@ -163,7 +163,7 @@ export default function Details({ movie }) {
 export async function getServerSideProps(ctx) {
   // Fetch data from external API
   const movie = await axios
-    .get(`http://www.omdbapi.com?apikey=faf7e5bb&i=${ctx.params.id}`)
+    .get(`https://www.omdbapi.com?apikey=faf7e5bb&i=${ctx.params.id}`)
     .then(({ data }) => {
       return data;
     });

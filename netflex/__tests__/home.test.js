@@ -12,17 +12,17 @@ describe("Test Movie Details Page", () => {
   let episodeData;
   beforeAll(async () => {
     movieData = await axios
-      .get("http://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=movie")
+      .get("https://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=movie")
       .then(({ data }) => {
         return data;
       });
     seriesData = await axios
-      .get("http://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=series")
+      .get("https://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=series")
       .then(({ data }) => {
         return data;
       });
     episodeData = await axios
-      .get("http://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=episode")
+      .get("https://www.omdbapi.com?apikey=faf7e5bb&s=marvel&type=episode")
       .then(({ data }) => {
         return data;
       });

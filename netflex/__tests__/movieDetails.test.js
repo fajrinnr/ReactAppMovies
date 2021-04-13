@@ -10,7 +10,7 @@ describe("Test Movie Details Page", () => {
   let movieData;
   beforeAll(async () => {
     movieData = axios
-      .get("http://www.omdbapi.com?apikey=faf7e5bb&i=tt4154664")
+      .get("https://www.omdbapi.com?apikey=faf7e5bb&i=tt4154664")
       .then(({ data }) => {
         return data;
       });
